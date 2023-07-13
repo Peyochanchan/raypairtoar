@@ -1,0 +1,7 @@
+<p><%= t '.greeting', recipient: @email, locale: locale %></p>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <p><%= t '.message', email: @resource.unconfirmed_email, locale: locale %></p>
+<% else %>
+  <p><%= t '.message', email: @resource.email, locale: locale %></p>
+<% end %>

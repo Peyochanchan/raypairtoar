@@ -1,0 +1,47 @@
+<div class="container-home">
+  <div class="header-container">
+    <div class="wrap">
+      <div class="header-photo">
+        <div class="header-title">
+          <div class="logo">
+            <%= image_tag('logo_repertoire.png', alt: "logo repertoire") %>
+            <h1><%= t '.repertoire', locale: locale %></h1>
+          </div>
+          <h3 class="title">
+            <%= t '.header_title_html' %>
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="child-home justify-content-around">
+    <%= image_tag("music-2027962_640.png", class: 'img-home') %>
+    <div class="link-home">
+      <%= link_to "#{t('buttons.connect', locale: locale)}", new_user_session_path, class:"croyable" %>
+      <h3 class="m-4">
+        <br>
+        <%= t('.discover', locale: locale) %></h3>
+    </div>
+  </div>
+  <div class="child-home">
+    <%= render 'shared/public' %>
+  </div>
+  <div style="background-color: white; color: #C45E26">
+    <div class="child-home justify-content-around">
+      <h3><%= t('.write', locale: locale) %></h3>
+      <%= image_tag("musical-notes-2170231_640.png", class: 'img-home') %>
+    </div>
+  </div>
+  <div class="child-home justify-content-around flex-column">
+    <h3><%= t('.find', locale: locale) %></h3>
+    <%= image_tag("classic-2028013_640.png", class: 'img-home')%>
+    <h3><%= t('.only_you', locale: locale) %></h3>
+  </div>
+  <div style="background-color: white; color: #C45E26">
+    <div class="child-home flex-column justify-content-around">
+      <%= image_tag("cassette-2025403_640.png", class: 'img-home') %>
+      <br>
+      <h3><%= t('.qr_code', locale: locale) %></h3>
+    </div>
+  </div>
+</div>

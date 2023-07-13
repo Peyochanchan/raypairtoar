@@ -1,0 +1,51 @@
+<div style="height: 60px;"></div>
+<div class="container">
+  <div class="wrapper m-2">
+    <div class="cadre-liste p-2">
+
+      <!-- LIST INFORMATIONS -->
+      <% if @list.photo.attached? %>
+        <div class="d-flex justify-content-center border-bottom p-4">
+          <%= cl_image_tag @list.photo.key, size: '150X150' %>
+        </div>
+      <% end %>
+
+      <h1 class="text-center m-2 p-2">
+        <%= @list.name %>
+      </h1>
+      <% if !@same_language  %>
+        <h1 class="text-center m-2 p-2" style="font-size: smaller;">
+          <%= "(#{sanitize(t('lists.show.name_html', name: @list[translater('name')[I18n.locale]], locale: locale))})" %>
+        </h1>
+      <% end -%>
+      <p class="cadre-description">
+        <%= sanitize(t('.description_html', description: @list[translater('description')[I18n.locale]], locale: locale)).html_safe %>
+      </p>
+      <%# if user_signed_in? %>
+        <div class="d-flex justify-content-center">
+          <%= link_to "#{t('buttons.edit-list', locale: locale)}", edit_list_path(@list, locale: locale), class: "btn btn-outline-dark text-center" if policy(@list).edit? %>
+        </div>
+        <br>
+      <%# end -%>
+      <!-- LIST OF SONGS -->
+      <div class="list" data-controller="insert-in-list">
+        <%= render 'list_with_delete_buttons', list: @list %>
+        <%= render 'list_songs/form', list: @list, list_song: @list_song %>
+      </div>
+
+      <!-- QR CODE AND LINK TO PDF -->
+      <% if policy(@list).show? %>
+      <div class="qr-code d-flex justify-content-center my-4">
+        <%= link_to list_path(@list, format: 'pdf', locale: locale) do %>
+          <div id="qr_code">
+            <%= @list.qr_code.html_safe %>
+          </div>
+        <% end -%>
+      </div>
+      <p class="text-center">
+        <%= t 'buttons.export', locale: locale %>
+      </p>
+    <% end -%>
+
+  </div>
+</div>
